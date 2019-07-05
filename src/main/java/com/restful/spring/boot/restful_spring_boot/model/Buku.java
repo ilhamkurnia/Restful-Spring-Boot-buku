@@ -1,6 +1,8 @@
 package com.restful.spring.boot.restful_spring_boot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,26 +13,27 @@ import java.util.Date;
 
 @Entity
 @Table(name = "books")
+@ApiModel(description = "Semua Detail tentang Buku.")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
 public class Buku {
-    @Id
-    @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
+
+    @ApiModelProperty(notes = "Informasi Id")
     private Long id;
 
-    @NotBlank
+    @ApiModelProperty(notes = "Infomasi JuduL Buku")
     private String titleBook;
 
-    @NotBlank
+    @ApiModelProperty(notes = "Informasi Nama Depan Pengarang")
     private String namaDepanPengarang;
 
-    @NotBlank
+    @ApiModelProperty(notes = "Informasi Nama Belakang Pengarang")
     private String namaBelakangPengarang;
 
-    @NotBlank
+    @ApiModelProperty(notes = "Informasi Status Peminjaman")
     private int statusPeminjaman;
 
-    @NotBlank
+    @ApiModelProperty(notes = "Informasi Nama Peminjam")
     private String namaPeminjam;
 
     @Column(nullable = false , updatable = false)
