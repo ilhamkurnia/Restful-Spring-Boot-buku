@@ -22,7 +22,7 @@ public class BukuController {
     @Autowired
     BukuRepository bukuRepository;
 
-    @ApiOperation(value = "Melihat List Buku ", response = List.class)
+    @ApiOperation(value = "Melihat List Semua Buku ", response = List.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Sukses Menjalankan List"),
             @ApiResponse(code = 400, message = "Accesing forbiddeen"),
             @ApiResponse(code = 500, message = "tidak ditemukan")})
@@ -32,7 +32,7 @@ public class BukuController {
         return bukuRepository.findAll();
     }
 
-    @ApiOperation(value = "Mendapatkan List Semua Buku")
+    @ApiOperation(value = "Melihat List dengan Id")
     @GetMapping("/buku/Get{id}")
     public ResponseEntity<Buku> getId(
             @ApiParam(value = "id Buku Object", required = true)
