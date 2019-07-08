@@ -27,7 +27,7 @@ public class BukuController {
             @ApiResponse(code = 400, message = "Accesing forbiddeen"),
             @ApiResponse(code = 500, message = "tidak ditemukan")})
 
-    @GetMapping("/buku/List")
+    @GetMapping("/buku")
     public List<Buku> getAll() {
         return bukuRepository.findAll();
     }
