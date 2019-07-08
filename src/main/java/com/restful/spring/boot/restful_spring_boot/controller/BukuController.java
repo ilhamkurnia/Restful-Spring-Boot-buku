@@ -27,13 +27,13 @@ public class BukuController {
             @ApiResponse(code = 400, message = "Accesing forbiddeen"),
             @ApiResponse(code = 500, message = "tidak ditemukan")})
 
-    @GetMapping("/buku")
+    @GetMapping("/buku/List")
     public List<Buku> getAll() {
         return bukuRepository.findAll();
     }
 
     @ApiOperation(value = "Mendapatkan List Semua Buku")
-    @GetMapping("/buku/{id}")
+    @GetMapping("/buku/Get{id}")
     public ResponseEntity<Buku> getId(
             @ApiParam(value = "id Buku Object", required = true)
             @PathVariable(value = "id") Long Id) throws ResourceNotFoundException {
@@ -44,14 +44,14 @@ public class BukuController {
 
 
     @ApiOperation(value = "Membuat List Buku ")
-    @PostMapping("buku")
+    @PostMapping("buku/Post")
     public Buku tambahbuku(
             @ApiParam(value = "Membuat List Buku", required = true) @Valid @RequestBody Buku buku) {
         return bukuRepository.save(buku);
     }
 
     @ApiOperation(value = "MengUpdate Buku")
-    @PutMapping("/buku/{id}")
+    @PutMapping("/buku/Update{id}")
     public ResponseEntity<Buku> updateBuku(
             @ApiParam(value = "id buku untuk update buku", required = true)
             @PathVariable(value = "id") Long id,
@@ -69,7 +69,7 @@ public class BukuController {
     }
 
     @ApiOperation(value = "Menghapus Buku")
-    @DeleteMapping("/buku/{id}")
+    @DeleteMapping("/buku/Delete/{id}")
     public Map<String, Boolean> deleteBuku(
             @ApiParam(value = "Id Buku dihapus", required = true)
             @PathVariable(value = "id") Long id)
