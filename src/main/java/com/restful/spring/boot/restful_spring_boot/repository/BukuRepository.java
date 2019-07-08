@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface BukuRepository extends JpaRepository<Buku, Long> {
-    List<Buku> findByStatusPeminjaman(int statusPeminjaman);
-    List<Buku> findByTitleBook (String titleBook);
+    //List<Buku> findByStatusPeminjaman(int statusPeminjaman);
+    //List<Buku> findByTitleBook (String titleBook);
 }

@@ -1,21 +1,15 @@
 package com.restful.spring.boot.restful_spring_boot.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
 
 @Entity
 @Table(name = "books")
 @ApiModel(description = "Semua Detail tentang Buku.")
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
+//@EntityListeners(AuditingEntityListener.class)
+//@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
 public class Buku {
 
     @ApiModelProperty(notes = "Informasi Id")
@@ -36,25 +30,28 @@ public class Buku {
     @ApiModelProperty(notes = "Informasi Nama Peminjam")
     private String namaPeminjam;
 
-    @Column(nullable = false , updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(nullable = false , updatable = false)
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @CreatedDate
+//    private Date createdAt;
+//
+//    @Column(nullable = false)
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @LastModifiedDate
+//    private Date updatedAt;
 
-    @CreatedDate
-    private Date createdAt;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
-
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
     public Long getId() {
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    @Column(name = "title_book", nullable = false)
     public String getTitleBook() {
         return titleBook;
     }
@@ -63,22 +60,25 @@ public class Buku {
         this.titleBook = titleBook;
     }
 
+    @Column(name = "nama_depan", nullable = false)
     public String getNamaDepanPengarang() {
         return namaDepanPengarang;
     }
 
     public void setNamaDepanPengarang(String namaDepanPengarang) {
-        namaDepanPengarang = namaDepanPengarang;
+        this.namaDepanPengarang = namaDepanPengarang;
     }
 
+    @Column(name = "nama_belakang", nullable = false)
     public String getNamaBelakangPengarang() {
         return namaBelakangPengarang;
     }
 
     public void setNamaBelakangPengarang(String namaBelakangPengarang) {
-        namaBelakangPengarang = namaBelakangPengarang;
+        this.namaBelakangPengarang = namaBelakangPengarang;
     }
 
+    @Column(name = "status_peminjaman", nullable = false)
     public int getStatusPeminjaman() {
         return statusPeminjaman;
     }
@@ -87,6 +87,7 @@ public class Buku {
         this.statusPeminjaman = statusPeminjaman;
     }
 
+    @Column(name = "nama_peminjam", nullable = false)
     public String getNamaPeminjam() {
         return namaPeminjam;
     }
@@ -95,19 +96,27 @@ public class Buku {
         this.namaPeminjam = namaPeminjam;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+//    public Date getCreatedAt() {
+//        return createdAt;
+//    }
+//
+//    public void setCreatedAt(Date createdAt) {
+//        this.createdAt = createdAt;
+//    }
+//
+//    public Date getUpdatedAt() {
+//        return updatedAt;
+//    }
+//
+//    public void setUpdatedAt(Date updatedAt) {
+//        this.updatedAt = updatedAt;
+//    }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    @Override
+    public String toString() {
+        return "Buku [id=" + id +  "title_book"+titleBook + ",nama_depan =" + namaDepanPengarang +
+                ", nama_belakang=" + namaBelakangPengarang + ", status_peminjaman=" + statusPeminjaman
+                +", nama_peminjam" +namaPeminjam+
+                "]";
     }
 }
