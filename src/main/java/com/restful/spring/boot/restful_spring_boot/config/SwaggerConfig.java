@@ -1,6 +1,5 @@
 package com.restful.spring.boot.restful_spring_boot.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
